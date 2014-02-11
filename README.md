@@ -66,6 +66,8 @@ GLFW bundles a number of dependencies in the `deps/` directory.
  - Added `GLFW_INCLUDE_ES31` for including the OpenGL ES 3.1 header
  - Added `GLFW_FLOATING` for creating always-on-top windowed mode windows
  - Added *partial and experimental* support for Wayland
+ - Changed `glfwGetCursorPos` to query the system directly for all cursor modes
+   except disabled mode
  - Bugfix: The debug context attribute was set from `GL_ARB_debug_output` even
            when a debug context had not been requested
  - Bugfix: The particles example was not linked against the threading library

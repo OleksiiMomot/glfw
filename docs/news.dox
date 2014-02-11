@@ -55,6 +55,13 @@ will not result in a character being input, for example if the Control key is
 held down.
 
 
+@subsection news_31_getcursorpos Direct query for cursor position
+
+GLFW now queries the system cursor position directly when you call @ref
+glfwGetCursorPos instead of returning cached data, except for when the window is
+in disabled cursor mode.
+
+
 @subsection news_31_egl Stable EGL support
 
 The support for EGL is now stable, successfully running on PandaBoards, Mesa,
