@@ -30,13 +30,14 @@ types and function prototypes of the OpenGL API.
 
 The GLFW header also defines everything necessary for your OpenGL header to
 function.  For example, under Windows you are normally required to include
-`windows.h` before the OpenGL header.  This would make your source file tied
-to Windows and pollute your code's namespace with the whole Win32 API.
+`windows.h` before the OpenGL header, which would pollute your code namespace
+with the entire Win32 API.
 
 Instead, the GLFW header takes care of this for you, not by including
 `windows.h`, but by duplicating only the very few necessary parts of it.  It
 does this only when needed, so if `windows.h` *is* included, the GLFW header
-does not try to redefine those symbols.
+does not try to redefine those symbols.  The reverse is not true, i.e.
+`windows.h` cannot cope if any of its symbols have already been defined.
 
 In other words:
 
@@ -44,7 +45,7 @@ In other words:
  - Do *not* include `windows.h` or other platform-specific headers unless you
    plan on using those APIs directly
  - If you *do* need to include such headers, do it *before* including
-   the GLFW one and it will detect this
+   the GLFW header and it will handle this
 
 If you are using an OpenGL extension loading library such as
 [glad](https://github.com/Dav1dde/glad), the extension loader header should

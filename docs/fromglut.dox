@@ -1,0 +1,137 @@
+/*!
+
+@page glut Moving from GLUT to GLFW 3
+
+@tableofcontents
+
+This is about converting a program that uses GLUT version 3 to GLFW version 3.
+
+
+@section glut_header Including the header file
+
+The GLFW header, like the GLUT header, includes the OpenGL header provided by
+your development environment.
+
+@par GLUT
+@code
+#include <GL/glut.h>
+@endcode
+
+@par GLFW
+@code
+#include <GLFW/glfw3.h>
+@endcode
+
+The GLFW header also provides [other macros](@ref build_macros) to make it
+include other OpenGL or OpenGL ES headers instead of the default one, or to
+include none at all.
+
+
+@subsection glut_header_glu Including the GLU header
+
+The GLFW header, unlike the GLUT header, does not by default include the GLU
+header, as GLU has been deprecated by Khronos.  If your program uses GLU
+functions, define `GLFW_INCLUDE_GLU` before including the GLFW header.
+
+@par GLFW with GLU
+@code
+#define GLFW_INCLUDE_GLU
+#include <GLFW/glfw3.h>
+@endcode
+
+
+@subsection glut_header_version Header version macros
+
+The `GLUT_API_VERSION` macro is replaced by the `GLFW_VERSION_MAJOR` macro, with
+the additional `GLFW_VERSION_MINOR` and `GLFW_VERSION_REVISION` macros providing
+full version information.
+
+
+@section glut_concept Conceptual differences
+
+GLFW uses screen coordinates for window sizes and positions, unlike GLUT, which
+uses pixels throughout.  While these units were traditionally the same, the
+arrival of high-DPI monitors have led some window systems to decouple them.
+
+
+@section glut_init Initialization and termination
+
+GLFW provides @ref glfwInit, which is similar to `glutInit` but does not accept
+a command-line argument list.  The GLFW initialization function will also
+return a value indicating whether it succeeded and it is recommended that
+applications check this value.
+
+@par GLUT
+@code
+glutInit(argc, argv);
+@endcode
+
+@par GLFW
+@code
+if (!glfwInit())
+{
+    // Initialization failed
+    return -1;
+}
+@endcode
+
+GLFW provides an [error callback](@ref intro_error) for receiving
+machine- and human-readable descriptions of errors as they occur.
+
+
+@subsection glut_init_window Window size and position defaults
+
+GLFW does not provide any direct replacements for the `glutInitWindowPosition`
+or `glutInitWindowSize` functions.  The desired window size is specified as
+arguments to @ref glfwCreateWindow, while initial window position can be
+achieved by making the window initially hidden and moving it before showing it.
+
+@par GLUT
+@code
+glutInitWindowPosition(x, y);
+glutInitWindowSize(width, height);
+glutInit(argc, argv);
+window = glutCreateWindow("My Window");
+@endcode
+
+@par GLFW
+@code
+glfwWindowHint(GLFW_VISIBLE, 0);
+window = glfwCreateWindow(width, height, "My Window", NULL, NULL);
+glfwSetWindowPos(window, x, y);
+glfwShowWindow(window);
+@endcode
+
+
+@section glut_event Event processing
+
+@section glut_overlap Mongoose
+
+The feature sets of GLFW and GLUT do not fully overlap, so there are features
+provided by GLUT that GLFW offers no alternative for.
+
+ - Menus
+ - Text rendering
+ - Overlays
+ - Shape rendering
+ - Color index mode
+
+@subsection glut_overlap_menus Alternatives for menus
+
+AntTweakBar
+
+@subsection glut_overlap_text Alternatives for text rendering
+
+NanoVG
+
+@subsection glut_overlap_overlays Alternatives for overlays
+
+@subsection glut_overlap_shape Alternatives for shape rendering
+
+@subsection glut_overlap_index Alternatives for color index mode
+
+1. You do not *talk* about color index mode.
+2. You do *not* talk about color index mode.
+3. You *do* not talk about color index mode.
+
+*/

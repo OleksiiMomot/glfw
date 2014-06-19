@@ -10,14 +10,15 @@
 @subsection news_31_cursor Custom system cursor support
 
 GLFW now supports creating and setting custom system cursors.  They can be
-created with @ref glfwCreateCursor and set with @ref glfwSetCursor.  Note that
-custom cursors are only visible in normal cursor mode.
+created with @ref glfwCreateCursor, set with @ref glfwSetCursor and destroyed
+with @ref glfwDestroyCursor.  Custom cursors are only visible in normal cursor
+mode.
 
 
 @subsection news_31_drop File drop event support
 
 GLFW now provides a callback for receiving the paths of files dropped onto GLFW
-windows.  The callback is set with the @ref glfwSetDropCallback function.
+windows.  The callback is set with @ref glfwSetDropCallback.
 
 
 @subsection news_31_keyname Key name support
@@ -55,10 +56,10 @@ easier debugging, with the `GLFW_FLOATING` window hint.
 
 @subsection news_31_charmods Character with modifiers callback
 
-GLFW now provides a callback for character events with modifier key bits.
-Unlike the regular character callback, this will report character events that
-will not result in a character being input, for example if the Control key is
-held down.
+GLFW now provides a callback for character events with modifier key bits.  The
+callback is set with @ref glfwSetCharModsCallback.  Unlike the regular character
+callback, this will report character events that will not result in a character
+being input, for example if the Control key is held down.
 
 
 @subsection news_31_getcursorpos Direct query for cursor position
