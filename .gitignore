@@ -72,3 +72,5 @@ tests/title
 tests/version
 tests/windows
 
+proj.win32/*.suo
+proj.win32/bin/*
