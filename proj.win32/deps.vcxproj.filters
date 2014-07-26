@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\deps\getopt.c" />
+    <ClCompile Include="..\deps\tinycthread.c" />
+    <ClCompile Include="..\deps\glad.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\deps\getopt.h" />
+    <ClInclude Include="..\deps\tinycthread.h" />
+  </ItemGroup>
+</Project>
