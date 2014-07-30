@@ -74,3 +74,4 @@ tests/windows
 
 proj.win32/*.suo
 proj.win32/bin/*
+proj.win32/ipch/**
